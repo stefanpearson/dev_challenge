@@ -4,49 +4,83 @@
     GLOBAL MIXINS
 */
 
-.padding(top, @padding: @v_gutter) {
-    @rem: (@padding / 10);
+/* Layout */
+
+.width(@value) {
+    @rem: (@value / 10);
+    width: unit(@rem, rem);
+}
+
+.height(@value) {
+    @rem: (@value / 10);
+    height: unit(@rem, rem);
+}
+
+.min-width(@value) {
+    @rem: (@value / 10);
+    min-width: unit(@rem, rem);
+}
+
+.min-height(@value) {
+    @rem: (@value / 10);
+    min-height: unit(@rem, rem);
+}
+
+.max-width(@value) {
+    @rem: (@value / 10);
+    max-width: unit(@rem, rem);
+}
+
+.max-height(@value) {
+    @rem: (@value / 10);
+    max-height: unit(@rem, rem);
+}
+
+.padding(top, @value: @v_gutter) {
+    @rem: (@value / 10);
     padding-top: unit(@rem, rem);
 }
 
-.padding(right, @padding: @h_gutter) {
-    @rem: (@padding / 10);
+.padding(right, @value: @h_gutter) {
+    @rem: (@value / 10);
     padding-right: unit(@rem, rem);
 }
 
-.padding(bottom, @padding: @v_gutter) {
-    @rem: (@padding / 10);
+.padding(bottom, @value: @v_gutter) {
+    @rem: (@value / 10);
     padding-bottom: unit(@rem, rem);
 }
 
-.padding(left, @padding: @h_gutter) {
-    @rem: (@padding / 10);
+.padding(left, @value: @h_gutter) {
+    @rem: (@value / 10);
     padding-left: unit(@rem, rem);
 }
 
-.margin(top, @margin: @v_gutter) {
-    @rem: (@padding / 10);
+.margin(top, @value: @v_gutter) {
+    @rem: (@value / 10);
     margin-top: unit(@rem, rem);
 }
 
-.margin(right, @margin: @h_gutter) {
-    @rem: (@margin / 10);
+.margin(right, @value: @h_gutter) {
+    @rem: (@value / 10);
     margin-right: unit(@rem, rem);
 }
 
-.margin(bottom, @margin: @v_gutter) {
-    @rem: (@margin / 10);
+.margin(bottom, @value: @v_gutter) {
+    @rem: (@value / 10);
     margin-bottom: unit(@rem, rem);
 }
 
-.margin(left, @margin: @h_gutter) {
-    @rem: (@margin / 10);
+.margin(left, @value: @h_gutter) {
+    @rem: (@value / 10);
     margin-left: unit(@rem, rem);
 }
 
-.maintain-aspect-ratio(@ratio) {
-    padding-bottom: 100% / @ratio;
+.maintain-aspect-ratio(@width_factor) {
+    padding-bottom: 100% / @width_factor;
 }
+
+/* / Layout */
 
 .background-image(@background_image) {
     background-image: (~"url('@{image_path}@{background_image}')");

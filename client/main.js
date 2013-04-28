@@ -25,10 +25,13 @@ define(['modules/idiom', 'modules/comm', 'modules/templates', 'libs/fastclick', 
                 member_request = comm.request({
                     url: url,
                     done: function (data) {
-                        data.ribotarURL = url + 'ribotar/';
+                        data.ribotarURL = url + '/ribotar/';
                         var html = templates['member_profile'](data);
-                        $(el).append(html);
-                        $menu.off('click');
+                        $(el).find('.section__body').append(html);
+                        setTimeout(function () {
+                            $(el).addClass('is-ready');
+                        }, 1);
+                        //$menu.off('click');
                     }
                 });
             });

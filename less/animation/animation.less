@@ -1,0 +1,15 @@
+@import '../global_config';
+@import '../global_mixins';
+
+@import 'animation_mixins';
+
+/*
+    # ANIMATION
+*/
+
+.description__rule {
+    .transition-transform-properties;
+    .transition-duration(0.2s);
+    .transition-delay(0.05s);
+    .transition-timing-function(cubic-bezier(.18, .72, .26, 1));
+}

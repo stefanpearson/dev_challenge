@@ -1,18 +1,37 @@
 {{#if description}}
-<p class="description">{{description}}</p>
-{{/if}}
-<div class="ribotar" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}>
-    <div class="media" data-image="{{ribotarURL}}">
-        <div class="media__image"></div>
-    </div>
+<div class="description">
+    <div class="description__rule" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}></div>
+    <p>{{description}}</p>
 </div>
-<dl class="data">
-    <div class="data__item">
-        <dt class="data__label"><b>Sweet</b> of choice</dt>
-        <dd class="data__value">{{#if favSweet}}{{favSweet}}{{else}}–{{/if}}</dd>
+{{/if}}
+
+<div class="media-object">
+
+    <div class="media-object__media">
+
+        <div class="ribotar" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}>
+
+            <div class="image" data-src="{{ribotarURL}}">
+                <div class="image__img is-ready" style="background-image: url({{ribotarURL}});"></div>
+            </div>
+
+        </div>
+
     </div>
-    <div class="data__item">
-        <dt class="data__label"><b>Season</b> of choice</dt>
-        <dd class="data__value">{{#if favSeason}}{{favSeason}}{{else}}–{{/if}}</dd>
+
+    <div class="media-object__body">
+
+        <dl class="data">
+            <div class="data__item">
+                <dt class="data__label"><b>Sweet</b> of choice</dt>
+                <dd class="data__value">{{#if favSweet}}{{favSweet}}{{else}}—{{/if}}</dd>
+            </div>
+            <div class="data__item">
+                <dt class="data__label"><b>Season</b> of choice</dt>
+                <dd class="data__value">{{#if favSeason}}{{favSeason}}{{else}}—{{/if}}</dd>
+            </div>
+        </dl>
+
     </div>
-</dl>
+
+</div>

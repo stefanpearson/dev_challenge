@@ -1,0 +1,41 @@
+@import '../global_config';
+@import '../global_mixins';
+
+/*
+    # ANIMATION MIXINS
+*/
+
+.transition-transform-properties(@additional: '') {
+    -webkit-transition-property: (~"-webkit-transform@{additional}");
+    -moz-transition-property: (~"-moz-transform@{additional}");
+    -o-transition-property: (~"-o-transform@{additional}");
+    transition-property: (~"transform@{additional}");
+}
+
+.transition-property (@property: all) {
+    -webkit-transition-property: @property;
+    -moz-transition-property: @property;
+    -o-transition-property: @property;
+    transition-property: @property;
+}
+
+.transition-timing-function (@ease: ease-in-out) {
+    -webkit-transition-timing-function: @ease;
+    -moz-transition-timing-function: @ease;
+    -o-transition-timing-function: @ease;
+    transition-timing-function: @ease;
+}
+
+.transition-duration (@duration: 0.2s) {
+    -webkit-transition-duration: @duration;
+    -moz-transition-duration: @duration;
+    -o-transition-duration: @duration;
+    transition-duration: @duration;
+}
+
+.transition-delay (@duration: 0.2s) {
+    -webkit-transition-delay: @duration;
+    -moz-transition-delay: @duration;
+    -o-transition-delay: @duration;
+    transition-delay: @duration;
+}

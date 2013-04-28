@@ -1,0 +1,58 @@
+@import '../global_config';
+@import '../global_mixins';
+
+/*
+    GENERIC
+*/
+
+/*
+    Image block
+*/
+.image {
+    position: relative;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+    padding-bottom: 100%;
+
+    // img element
+    .image__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        .background-size(100% auto);
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        // Ready state
+        &.is-ready {
+            opacity: 1;
+        }
+    }
+}
+/* / Image block */
+
+/*
+    Media object block
+*/
+.media-object {
+    position: relative;
+    .min-height(80);
+
+    // Media item
+    .media-object__media {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .width(80);
+    }
+
+    // Body item
+    .media-object__body {
+        .margin(left, 80 + @h_gutter);
+    }
+}
+/* / Media object block */

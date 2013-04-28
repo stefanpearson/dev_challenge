@@ -8,16 +8,6 @@
     TYPOGRAPHY
 */
 
-/* Base units */
-
-html {
-    font-size: 62.5%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-}
-
-/* / Base units */
-
 /* Base styles */
 
 body,
@@ -39,6 +29,18 @@ a {
     color: @color_white;
 }
 
+.font-trigger {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    bottom: 100%;
+    left: 0;
+
+    em {
+        font-family: @face_b;
+    }
+}
+
 .font-face('Novecentowide', 'Novecento/Novecentowide-Book-webfont', normal, normal);
 .font-face('Novecentowide', 'Novecento/Novecentowide-DemiBold-webfont', bold, normal);
 
@@ -51,11 +53,13 @@ a {
 
     h1 {
         .alpha;
+        .margin(bottom, @v_gutter / 4);
     }
 
     h2 {
         display: inline-block;
         vertical-align: top;
+        min-width: 6em;
         padding-right: 0.2em;
         .padding(left, @h_gutter);
         .margin(left, -@h_gutter);
@@ -65,22 +69,30 @@ a {
 }
 /* / Header block */
 
+/*
+    Data block
+*/
+.data {
+    .small;
+
+    // Item element
+    .data__item {
+        .margin(bottom, @v_gutter);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // Value element
+    .data__value {
+        font-family: @face_b;
+        font-style: italic;
+    }
+}
+/* / Data block */
+
 .description {
     font-family: @face_b;
     font-style: italic;
 }
-
-/*
-    Data block
-*/
-// Item element
-.data__item {
-    .margin(bottom, @v_gutter / 2);
-}
-
-// Value element
-.data__value {
-    font-family: @face_b;
-    font-style: italic;
-}
-/* / Data block */
