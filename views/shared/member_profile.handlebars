@@ -1,10 +1,3 @@
-{{#if description}}
-<div class="description">
-    <div class="description__rule" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}></div>
-    <p>{{description}}</p>
-</div>
-{{/if}}
-
 <div class="media-object">
 
     <div class="media-object__media">
@@ -35,3 +28,10 @@
     </div>
 
 </div>
+
+{{#if description}}
+<div class="description">
+    <div class="description__rule" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}></div>
+    <p>{{description}}</p>
+</div>
+{{/if}}

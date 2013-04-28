@@ -1,15 +1,9 @@
 define([], function () {
 /**
- * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
+ * FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
- * @version 0.6.5
- * @codingstandard ftlabs-jsv2
- * @copyright The Financial Times Limited [All Rights Reserved]
- * @license MIT License (see LICENSE.txt)
+ * v 0.6.5
  */
-
-/*jslint browser:true, node:true*/
-/*global define, Event, Node*/
 
 
 /**

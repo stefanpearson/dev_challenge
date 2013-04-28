@@ -18,6 +18,7 @@ var app = express(),
     });
 
 // Setup
+app.use(express.compress());
 app.use(express.static(__dirname + '/public'));
 app.engine('handlebars', hbs.engine);
 app.set('views', './views/');
