@@ -1,20 +1,41 @@
 module.exports = function (grunt) {
 
+    grunt.loadNpmTasks('grunt-contrib-handlebars');
     grunt.loadNpmTasks('grunt-requirejs');
+    grunt.loadNpmTasks('grunt-webfont');
 
     grunt.initConfig({
+
+        handlebars: {
+            compile: {
+                options: {
+                    namespace: 'Handlebars.templates',
+                    amd: true,
+                    processName: function (filename) {
+                        filename = filename.replace('views/shared/', '');
+                        filename = filename.substring(0, filename.lastIndexOf('.'));
+                        return filename;
+                    }
+                },
+                files: {
+                    'client/modules/templates.js': ['views/shared/*.handlebars', 'views/shared/fragments/*.handlebars']
+                }
+            }
+        },
 
         requirejs: {
             compile: {
                 options: {
                     //almond: true,
-                    optimize: 'uglify2',
+                    //optimize: 'uglify2',
+                    optimize: 'none',
                     baseUrl: './client',
                     out: './public/js/build.js',
                     include: ['main'],
                     insertRequire: ['main'],
                     paths: {
-                        zepto: 'libs/zepto'
+                        zepto: 'libs/zepto',
+                        handlebars: 'libs/handlebars'
                     },
                     wrap: true
                 }
@@ -25,7 +46,7 @@ module.exports = function (grunt) {
             icons: {
                 src: 'production_assets/icons/*.svg',
                 dest: 'public/fonts',
-                destCss: 'less/icons',
+                destCss: 'less/components',
                 options: {
                     font: 'icons_font',
                     hashes: false,
@@ -36,5 +57,7 @@ module.exports = function (grunt) {
         }
 
     });
+
+    grunt.registerTask('build', ['handlebars', 'requirejs']);
 
 };

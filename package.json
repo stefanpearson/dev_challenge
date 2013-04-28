@@ -8,9 +8,9 @@
     "express": "~3.2.0"
   },
   "devDependencies": {
-    "grunt-handlebars-requirejs": "~0.1.0",
     "grunt": "~0.4.1",
     "grunt-requirejs": "~0.3.5",
-    "grunt-webfont": "~0.1.2"
+    "grunt-webfont": "~0.1.2",
+    "grunt-contrib-handlebars": "~0.5.8"
   }
 }

@@ -1,0 +1,141 @@
+define(['handlebars'], function(Handlebars) {
+
+this["Handlebars"] = this["Handlebars"] || {};
+this["Handlebars"]["templates"] = this["Handlebars"]["templates"] || {};
+
+this["Handlebars"]["templates"]["member_profile"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n<p class=\"description\">";
+  if (stack1 = helpers.description) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n";
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "style=\"background-color: ";
+  if (stack1 = helpers.hexColor) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.hexColor; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\"";
+  return buffer;
+  }
+
+function program5(depth0,data) {
+  
+  var stack1;
+  if (stack1 = helpers.favSweet) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.favSweet; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  return escapeExpression(stack1);
+  }
+
+function program7(depth0,data) {
+  
+  
+  return "–";
+  }
+
+function program9(depth0,data) {
+  
+  var stack1;
+  if (stack1 = helpers.favSeason) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.favSeason; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  return escapeExpression(stack1);
+  }
+
+  stack1 = helpers['if'].call(depth0, depth0.description, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n<div class=\"ribotar\" ";
+  stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">\n    <div class=\"media\" data-image=\"";
+  if (stack1 = helpers.ribotarURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.ribotarURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n        <div class=\"media__image\"></div>\n    </div>\n</div>\n<dl class=\"data\">\n    <div class=\"data__item\">\n        <dt class=\"data__label\"><b>Sweet</b> of choice</dt>\n        <dd class=\"data__value\">";
+  stack1 = helpers['if'].call(depth0, depth0.favSweet, {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</dd>\n    </div>\n    <div class=\"data__item\">\n        <dt class=\"data__label\"><b>Season</b> of choice</dt>\n        <dd class=\"data__value\">";
+  stack1 = helpers['if'].call(depth0, depth0.favSeason, {hash:{},inverse:self.program(7, program7, data),fn:self.program(9, program9, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</dd>\n    </div>\n</dl>";
+  return buffer;
+  });
+
+this["Handlebars"]["templates"]["team"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+helpers = helpers || Handlebars.helpers; data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n    <section class=\"section\" data-id=\"";
+  if (stack1 = helpers.id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" data-url=\"";
+  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n        <header class=\"header\">\n            <h1><b>";
+  if (stack1 = helpers.firstName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.firstName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</b> ";
+  if (stack1 = helpers.lastName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.lastName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</h1>\n            <h2 ";
+  stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += ">";
+  stack1 = helpers['if'].call(depth0, depth0.role, {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "</h2>\n        </header>\n    </section>\n    ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "style=\"background-color: ";
+  if (stack1 = helpers.hexColor) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.hexColor; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + ";\"";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  var stack1;
+  if (stack1 = helpers.role) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.role; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  return escapeExpression(stack1);
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "…";
+  }
+
+  buffer += "<div class=\"section-list\">\n    ";
+  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n</div>";
+  return buffer;
+  });
+
+return this["Handlebars"]["templates"];
+
+});

@@ -6,3 +6,61 @@
 /*
     TYPOGRAPHY MIXINS
 */
+
+.font-face (@family_name, @path, @font_weight: normal, @font_style: normal) {
+    @font-face {
+        font-family: @family_name;
+        src: url('@{font_path}@{path}.ttf') format('truetype');
+        font-weight: @font_weight;
+        font-style: @font_style;
+    }
+}
+
+.font-size(@font_size: @size_base) {
+    @rem: (@font_size / 10);
+    font-size: ~"@{rem}rem";
+}
+
+.leading(@leading: @leading_base) {
+    @rem: (@leading / 10);
+    line-height: ~"@{rem}rem";
+}
+
+.b() {
+    font-weight: bold;
+}
+
+.i() {
+    font-style: italic;
+}
+
+.ellipsis(@max_width: 100%) {
+    max-width: @max_width;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Heirarchy mixins */
+
+.alpha() {
+    .font-size(@size_alpha);
+    .leading(@leading_alpha);
+}
+
+.beta() {
+    .font-size(@size_beta);
+    .leading(@leading_beta);
+}
+
+.base() {
+    .font-size();
+    .leading();
+}
+
+.small() {
+    .font-size(@size_small);
+    .leading(@leading_small);
+}
+
+/* / Heirarchy mixins */

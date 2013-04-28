@@ -1,0 +1,18 @@
+{{#if description}}
+<p class="description">{{description}}</p>
+{{/if}}
+<div class="ribotar" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}>
+    <div class="media" data-image="{{ribotarURL}}">
+        <div class="media__image"></div>
+    </div>
+</div>
+<dl class="data">
+    <div class="data__item">
+        <dt class="data__label"><b>Sweet</b> of choice</dt>
+        <dd class="data__value">{{#if favSweet}}{{favSweet}}{{else}}–{{/if}}</dd>
+    </div>
+    <div class="data__item">
+        <dt class="data__label"><b>Season</b> of choice</dt>
+        <dd class="data__value">{{#if favSeason}}{{favSeason}}{{else}}–{{/if}}</dd>
+    </div>
+</dl>

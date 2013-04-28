@@ -7,3 +7,80 @@
 /*
     TYPOGRAPHY
 */
+
+/* Base units */
+
+html {
+    font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* / Base units */
+
+/* Base styles */
+
+body,
+input,
+textarea,
+select {
+    font-family: @face_a;
+    .font-size(@size_base);
+    .leading(@leading_base);
+    color: @color_base;
+}
+
+a {
+    color: @color_base;
+}
+
+::selection {
+    background-color: @color_base;
+    color: @color_white;
+}
+
+.font-face('Novecentowide', 'Novecento/Novecentowide-Book-webfont', normal, normal);
+.font-face('Novecentowide', 'Novecento/Novecentowide-DemiBold-webfont', bold, normal);
+
+/* / Base styles */
+
+/*
+    Header block
+*/
+.header {
+
+    h1 {
+        .alpha;
+    }
+
+    h2 {
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 0.2em;
+        .padding(left, @h_gutter);
+        .margin(left, -@h_gutter);
+        color: @color_white;
+        background-color: @color_default;
+    }
+}
+/* / Header block */
+
+.description {
+    font-family: @face_b;
+    font-style: italic;
+}
+
+/*
+    Data block
+*/
+// Item element
+.data__item {
+    .margin(bottom, @v_gutter / 2);
+}
+
+// Value element
+.data__value {
+    font-family: @face_b;
+    font-style: italic;
+}
+/* / Data block */
