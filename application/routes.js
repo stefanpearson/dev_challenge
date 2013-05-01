@@ -2,7 +2,7 @@ module.exports = {
 
     '/': function (request, response) {
         response.render('main', {
-            title: 'Home'
+            title: 'Ribot Dev Challenge'
         });
     }
 

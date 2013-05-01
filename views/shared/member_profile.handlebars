@@ -4,9 +4,7 @@
 
         <div class="ribotar" {{#if hexColor}}style="background-color: {{hexColor}}"{{/if}}>
 
-            <div class="image" data-src="{{ribotarURL}}">
-                <div class="image__img is-ready" style="background-image: url({{ribotarURL}});"></div>
-            </div>
+            <div class="image" data-src="{{ribotarURL}}"></div>
 
         </div>
 
@@ -16,11 +14,11 @@
 
         <dl class="data">
             <div class="data__item">
-                <dt class="data__label"><b>Sweet</b> of choice</dt>
+                <dt class="data__label">{{{idiom "fav_sweet_label"}}}</dt>
                 <dd class="data__value">{{#if favSweet}}{{favSweet}}{{else}}—{{/if}}</dd>
             </div>
             <div class="data__item">
-                <dt class="data__label"><b>Season</b> of choice</dt>
+                <dt class="data__label">{{{idiom "fav_season_label"}}}</dt>
                 <dd class="data__value">{{#if favSeason}}{{favSeason}}{{else}}—{{/if}}</dd>
             </div>
         </dl>

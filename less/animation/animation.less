@@ -9,7 +9,26 @@
 
 .description__rule {
     .transition-transform-properties;
-    .transition-duration(0.2s);
-    .transition-delay(0.05s);
-    .transition-timing-function(cubic-bezier(.18, .72, .26, 1));
+    .transition-duration(1s);
+    .transition-timing-function(cubic-bezier(.2, 1, 0, 1));
+}
+
+.image {
+    .transition-property(opacity);
+    .transition-duration(0.15s);
+    .transition-timing-function();
+}
+
+.section__back,
+.section__title {
+    .transition-duration(0.5s);
+    .transition-timing-function(cubic-bezier(.40, 0, .25, 1));
+}
+
+.section__back {
+    .transition-transform-properties(', opacity');
+}
+
+.section__title {
+    .transition-transform-properties();
 }

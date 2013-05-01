@@ -6,7 +6,7 @@ this["Handlebars"]["templates"] = this["Handlebars"]["templates"] || {};
 this["Handlebars"]["templates"]["member_profile"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data) {
   
@@ -62,19 +62,23 @@ function program9(depth0,data) {
   if (stack1 = helpers.ribotarURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.ribotarURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n                <div class=\"image__img is-ready\" style=\"background-image: url(";
-  if (stack1 = helpers.ribotarURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.ribotarURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + ");\"></div>\n            </div>\n\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\"><b>Sweet</b> of choice</dt>\n                <dd class=\"data__value\">";
-  stack1 = helpers['if'].call(depth0, depth0.favSweet, {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</dd>\n            </div>\n            <div class=\"data__item\">\n                <dt class=\"data__label\"><b>Season</b> of choice</dt>\n                <dd class=\"data__value\">";
-  stack1 = helpers['if'].call(depth0, depth0.favSeason, {hash:{},inverse:self.program(5, program5, data),fn:self.program(7, program7, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
+    + "\"></div>\n\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
+  options = {hash:{},data:data};
+  stack2 = ((stack1 = helpers.idiom),stack1 ? stack1.call(depth0, "fav_sweet_label", options) : helperMissing.call(depth0, "idiom", "fav_sweet_label", options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</dt>\n                <dd class=\"data__value\">";
+  stack2 = helpers['if'].call(depth0, depth0.favSweet, {hash:{},inverse:self.program(5, program5, data),fn:self.program(3, program3, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</dd>\n            </div>\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
+  options = {hash:{},data:data};
+  stack2 = ((stack1 = helpers.idiom),stack1 ? stack1.call(depth0, "fav_season_label", options) : helperMissing.call(depth0, "idiom", "fav_season_label", options));
+  if(stack2 || stack2 === 0) { buffer += stack2; }
+  buffer += "</dt>\n                <dd class=\"data__value\">";
+  stack2 = helpers['if'].call(depth0, depth0.favSeason, {hash:{},inverse:self.program(5, program5, data),fn:self.program(7, program7, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "</dd>\n            </div>\n        </dl>\n\n    </div>\n\n</div>\n\n";
-  stack1 = helpers['if'].call(depth0, depth0.description, {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
+  stack2 = helpers['if'].call(depth0, depth0.description, {hash:{},inverse:self.noop,fn:self.program(9, program9, data),data:data});
+  if(stack2 || stack2 === 0) { buffer += stack2; }
   return buffer;
   });
 
@@ -94,7 +98,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n\n        <header class=\"header\">\n            <h1><b>";
+    + "\">\n\n        <div class=\"section__back\"></div>\n\n        <header class=\"section__header\">\n            <h1 class=\"section__title\"><b>";
   if (stack1 = helpers.firstName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.firstName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

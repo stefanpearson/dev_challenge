@@ -3,8 +3,10 @@
     {{#each this}}
     <section class="section" data-id="{{id}}" data-url="{{url}}">
 
-        <header class="header">
-            <h1><b>{{firstName}}</b> {{lastName}}</h1>
+        <div class="section__back"></div>
+
+        <header class="section__header">
+            <h1 class="section__title"><b>{{firstName}}</b> {{lastName}}</h1>
             <h2 {{#if hexColor}}style="background-color: {{hexColor}};"{{/if}}>{{#if role}}{{role}}{{else}}—{{/if}}</h2>
         </header>
 

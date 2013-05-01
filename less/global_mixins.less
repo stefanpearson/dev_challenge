@@ -36,6 +36,26 @@
     max-height: unit(@rem, rem);
 }
 
+.position(top, @value: @v_gutter) {
+    @rem: (@value / 10);
+    top: unit(@rem, rem);
+}
+
+.position(right, @value: @h_gutter) {
+    @rem: (@value / 10);
+    right: unit(@rem, rem);
+}
+
+.position(bottom, @value: @v_gutter) {
+    @rem: (@value / 10);
+    bottom: unit(@rem, rem);
+}
+
+.position(left, @value: @h_gutter) {
+    @rem: (@value / 10);
+    left: unit(@rem, rem);
+}
+
 .padding(top, @value: @v_gutter) {
     @rem: (@value / 10);
     padding-top: unit(@rem, rem);
@@ -89,6 +109,27 @@
 .background-size(@background_size) {
     -webkit-background-size: @background_size;
     background-size: @background_size;
+}
+
+.translate(@value) {
+    -webkit-transform: translate3d((~"@{value}"), 0);
+    -moz-transform: translate3d((~"@{value}"), 0);
+    -o-transform: translate((~"@{value}"));
+    transform: translate3d((~"@{value}"), 0);
+}
+
+.scale(@value) {
+    -webkit-transform: scale((~"@{value}"));
+    -moz-transform: scale((~"@{value}"));
+    -o-transform: scale((~"@{value}"));
+    transform: scale((~"@{value}"));
+}
+
+.transform-origin(@value) {
+    -webkit-transform-origin: @value;
+    -moz-transform-origin: @value;
+    -o-transform-origin: @value;
+    transform-origin: @value;
 }
 
 .accelerate() {
