@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-handlebars');
-    grunt.loadNpmTasks('grunt-requirejs'); //
+    grunt.loadNpmTasks('grunt-requirejs');
 
     grunt.initConfig({
 
