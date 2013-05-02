@@ -1,29 +1,56 @@
-define([], function () {
-   
+define(['modules/lazy_image', 'modules/comm', 'zepto'], function (LazyImage, comm, $) {
+
     /*
         Section module
     */
 
     // Constructor
-    var Section = function (url) {
+    var Section = function ($el) {
 
-        this.url = url;
+        this.$el = $el;
     };
     Section.prototype = {
 
-        init: function () {
-            
-        },
+        make_request: function (url) {
 
-        make_request: function () {
+            return comm.request({
+                url: url,
+                done: function (data) {
+                    var html,
+                        $images;
 
+                    data.ribotarURL = url + '/ribotar/';
+                    html = templates['member_profile'](data);
+
+                    $el.find('.section__body').append(html);
+
+                    setTimeout(function () {
+                        $el.addClass('is-ready');
+                        $images = $el.find('.image');
+
+                        $images.each(function (index, value) {
+                            var image = new LazyImage($(this), value.dataset.src);
+                            image.load();
+                        });
+                    }, 1);
+                    //$menu.off('click');
+                }
+            });
         },
 
         render: function () {
+
+        },
+
+        activate: function () {
+
+        },
+
+        deactivate: function () {
 
         }
 
     };
 
-    return Section; 
+    return Section;
 });

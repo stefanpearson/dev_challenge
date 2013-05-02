@@ -11,13 +11,8 @@ define(['modules/document'], function (document) {
         'en': {
             fav_sweet_label: '<b>Sweet</b> of choice',
             fav_season_label: '<b>Season</b> of choice'
-        },
-
-        // French
-        'fr': {
-            fav_sweet_label: '<b>Doux</b> de choix',
-            fav_season_label: '<b>Saison</b> de choix'
         }
+
     };
 
     // Idiom returns language hash using HTML lang attribute

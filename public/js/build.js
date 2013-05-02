@@ -2108,27 +2108,53 @@ return this["Handlebars"]["templates"];
 });
 define('modules/menu',['modules/section', 'modules/comm', 'modules/templates'], function (Section, comm, templates) {
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/';
-
     /*
         Menu
     */
+
+    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
+    var riAPI_url = '//' + window.location.hostname + ':25708/api/',
+        $menu = null;
 
     var init = function () {
 
         // Make request
         var team_request = comm.request({
             url: riAPI_url + 'team/',
-            done: render
+            done: function (data) {
+                var html = render(data);
+
+                $menu = $(html);
+                $('.bounds').append($menu);
+                add_events();
+            }
         });
     };
 
     var render = function (data) {
 
-        var html = templates['team'](data);
+        return templates['team'](data);
+    };
 
-        $('.bounds').append(html);
+    var add_events = function () {
+
+        $menu.on('click', '.section', tap_handler);
+    };
+
+    var remove_events = function () {
+
+        $menu.off('click', '.section', tap_handler);
+    };
+
+    var tap_handler = function (e) {
+
+        var el = e.currentTarget,
+            $el = $(el),
+            url = el.dataset.url;
+
+        console.log(url);
+
+        remove_events();
     };
 
     /*
@@ -2903,13 +2929,8 @@ define('modules/idiom',['modules/document'], function (document) {
         'en': {
             fav_sweet_label: '<b>Sweet</b> of choice',
             fav_season_label: '<b>Season</b> of choice'
-        },
-
-        // French
-        'fr': {
-            fav_sweet_label: '<b>Doux</b> de choix',
-            fav_season_label: '<b>Saison</b> de choix'
         }
+
     };
 
     // Idiom returns language hash using HTML lang attribute

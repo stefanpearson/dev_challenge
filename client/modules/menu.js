@@ -1,26 +1,52 @@
 define(['modules/section', 'modules/comm', 'modules/templates'], function (Section, comm, templates) {
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/';
-
     /*
         Menu
     */
+
+    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
+    var riAPI_url = '//' + window.location.hostname + ':25708/api/',
+        $menu = null;
 
     var init = function () {
 
         // Make request
         var team_request = comm.request({
             url: riAPI_url + 'team/',
-            done: render
+            done: function (data) {
+                var html = render(data);
+
+                $menu = $(html);
+                $('.bounds').append($menu);
+                add_events();
+            }
         });
     };
 
     var render = function (data) {
 
-        var html = templates['team'](data);
+        return templates['team'](data);
+    };
 
-        $('.bounds').append(html);
+    var add_events = function () {
+
+        $menu.on('click', '.section', tap_handler);
+    };
+
+    var remove_events = function () {
+
+        $menu.off('click', '.section', tap_handler);
+    };
+
+    var tap_handler = function (e) {
+
+        var el = e.currentTarget,
+            $el = $(el),
+            url = el.dataset.url;
+
+        console.log(url);
+
+        remove_events();
     };
 
     /*
