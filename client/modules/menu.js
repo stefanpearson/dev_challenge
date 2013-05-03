@@ -1,12 +1,10 @@
-define(['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm, templates, $, require) {
+define(['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'require'], function (comm, templates, settings, $, require) {
 
     /*
         Menu
     */
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/',
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/',
-        $el = $('.bounds'),
+    var $el = $('.bounds'),
         $html = null,
         current_request = null,
         initialised = false;
@@ -20,7 +18,6 @@ define(['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm
         else
         {
             add_events();
-            $html.addClass('is-engaged');
         }
     };
 
@@ -32,7 +29,6 @@ define(['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm
 
         if ($html !== null)
         {
-            $html.removeClass('is-engaged');
             remove_events();
         }
     };
@@ -41,7 +37,7 @@ define(['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm
 
         // Make request
         current_request = comm.request({
-            url: riAPI_url + 'team/',
+            url: settings.riAPI_url + 'team/',
             done: on_response,
             always: function () {
                 current_request = null;
@@ -54,6 +50,8 @@ define(['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm
         $html = render(data, $el);
 
         add_events();
+
+        $('body').scrollTop(1);
     };
 
     var render = function (data, $target) {

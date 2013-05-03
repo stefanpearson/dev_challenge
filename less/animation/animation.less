@@ -19,10 +19,18 @@
     .transition-timing-function();
 }
 
-.section {
-    .transition-transform-properties();
+.section,
+.section__header {
     .transition-duration(0.5s);
     .transition-timing-function(cubic-bezier(.40, 0, .25, 1));
+}
+
+.section {
+    .transition-transform-properties();
+}
+
+.section__header {
+    .transition-transform-properties(', opacity');
 }
 
 .section__back,

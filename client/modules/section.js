@@ -1,4 +1,4 @@
-define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'zepto', 'require'], function (LazyImage, comm, templates, $, require) {
+define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'require'], function (LazyImage, comm, templates, settings, $, require) {
 
     /*
         Section module
@@ -24,12 +24,24 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'zepto', 'req
         activate: function () {
 
             var t = this,
-                offset = -(t.$section.offset().top - 40),
+                spacing = 36,
+                offset,
                 defer;
 
             t.make_request();
 
             t.add_events();
+
+            t.$parent.addClass('is-engaged');
+
+            if (settings.overflow_scrolling)
+            {
+                offset = -(t.$section.offset().top - spacing);
+            }
+            else
+            {
+                offset = -((t.$section.offset().top - spacing) - t.$window.scrollTop());
+            }
 
             t.$section.css({
                 '-webkit-transform': 'translate3d(0,' + offset + 'px, 0)'
@@ -55,6 +67,7 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'zepto', 'req
                 '-webkit-transform': 'translate3d(0,0,0)'
             });
 
+            t.$parent.removeClass('is-engaged');
             t.$section.removeClass('is-active is-ready');
         },
 

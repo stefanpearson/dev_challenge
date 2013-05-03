@@ -2119,7 +2119,17 @@ function program6(depth0,data) {
 return this["Handlebars"]["templates"];
 
 });
-define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templates', 'zepto', 'require'], function (LazyImage, comm, templates, $, require) {
+define('modules/settings',[], function () {
+
+    // Live server
+    //'http://theribots.nodejitsu.com/api/'
+    
+    return {
+        riAPI_url: '//' + window.location.hostname + ':25708/api/',
+        overflow_scrolling: false
+    };
+});
+define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'require'], function (LazyImage, comm, templates, settings, $, require) {
 
     /*
         Section module
@@ -2145,12 +2155,24 @@ define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templat
         activate: function () {
 
             var t = this,
-                offset = -(t.$section.offset().top - 40),
+                spacing = 36,
+                offset,
                 defer;
 
             t.make_request();
 
             t.add_events();
+
+            t.$parent.addClass('is-engaged');
+
+            if (settings.overflow_scrolling)
+            {
+                offset = -(t.$section.offset().top - spacing);
+            }
+            else
+            {
+                offset = -((t.$section.offset().top - spacing) - t.$window.scrollTop());
+            }
 
             t.$section.css({
                 '-webkit-transform': 'translate3d(0,' + offset + 'px, 0)'
@@ -2176,6 +2198,7 @@ define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templat
                 '-webkit-transform': 'translate3d(0,0,0)'
             });
 
+            t.$parent.removeClass('is-engaged');
             t.$section.removeClass('is-active is-ready');
         },
 
@@ -2251,15 +2274,13 @@ define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templat
 
     return Section;
 });
-define('modules/menu',['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm, templates, $, require) {
+define('modules/menu',['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'require'], function (comm, templates, settings, $, require) {
 
     /*
         Menu
     */
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/',
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/',
-        $el = $('.bounds'),
+    var $el = $('.bounds'),
         $html = null,
         current_request = null,
         initialised = false;
@@ -2273,7 +2294,6 @@ define('modules/menu',['modules/comm', 'modules/templates', 'zepto', 'require'],
         else
         {
             add_events();
-            $html.addClass('is-engaged');
         }
     };
 
@@ -2285,7 +2305,6 @@ define('modules/menu',['modules/comm', 'modules/templates', 'zepto', 'require'],
 
         if ($html !== null)
         {
-            $html.removeClass('is-engaged');
             remove_events();
         }
     };
@@ -2294,7 +2313,7 @@ define('modules/menu',['modules/comm', 'modules/templates', 'zepto', 'require'],
 
         // Make request
         current_request = comm.request({
-            url: riAPI_url + 'team/',
+            url: settings.riAPI_url + 'team/',
             done: on_response,
             always: function () {
                 current_request = null;
@@ -3093,13 +3112,21 @@ FastClick.attach = function(layer) {
 
 return FastClick;
 });
-define('main',['modules/view_manager', 'libs/fastclick'], function (view_manager, FastClick) {
+define('main',['modules/view_manager', 'modules/settings', 'libs/fastclick'], function (view_manager, settings, FastClick) {
 
     // Click event override to remove touch delay
     new FastClick(document.body);
 
+    // Enable overflow scrolling (experimental)
+    if (settings.overflow_scrolling)
+    {
+        $('.bounds').addClass('bounds--overflow-scrolling');
+    }
+
     // Go to menu
     view_manager.go_to_menu();
+
+    $('body').scrollTop(1);
 
     // w00t
     console.log('App initialised');
