@@ -1,7 +1,7 @@
 # Ribot
 ## Dev Challenge
 
-Oh hi. Do `npm install` to grab the dependencies. Run the express server on port 8008 with `node ribot.js`.
+Oh hi. Do `npm install` to grab the dependencies. Run the express server on port 8008 with `node app.js`.
 
 ### Grunt tasks
 
