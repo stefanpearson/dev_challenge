@@ -24,7 +24,7 @@ define(['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'requi
     var deactivate = function () {
         if (current_request !== null)
         {
-            current_request.abort();
+            comm.abort(current_request);
         }
 
         if ($html !== null)
@@ -50,8 +50,6 @@ define(['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'requi
         $html = render(data, $el);
 
         add_events();
-
-        $('body').scrollTop(1);
     };
 
     var render = function (data, $target) {
@@ -64,7 +62,7 @@ define(['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'requi
         // Append to target
         if ($target !== undefined && $target.length)
         {
-            $target.empty().append($html);
+            $target.append($html);
         }
 
         return $html;
@@ -88,7 +86,7 @@ define(['modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'requi
             $item = $(current_target),
             view_manager = require('modules/view_manager');
 
-        // Temp
+        // Go to section
         view_manager.go_to_section($item, current_target.dataset.url);
     };
 

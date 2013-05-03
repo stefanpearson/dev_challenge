@@ -11,7 +11,7 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
 
         t.$parent = $('.section-list');
         t.$section = $section;
-        t.$back = $section.find('.section__title');
+        t.$back = $section.find('.section__header');
         t.$body = $section.find('.section__body');
         t.url = url;
 
@@ -58,7 +58,7 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
 
             if (t.current_request !== null)
             {
-                t.current_request.abort();
+                comm.abort(t.current_request);
             }
 
             t.$body.empty();
@@ -96,11 +96,18 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
                 t.$section.addClass('is-ready');
                 var $images = $html.find('.image');
 
+                // Instantiate lazy load images
                 $images.each(function (index, value) {
                     var image = new LazyImage($(this), value.dataset.src);
                     image.load();
                 });
-            }, 1);
+
+                // Get tweets
+                /*if (data.hasOwnProperty('twitter') && data.twitter.length)
+                {
+                    t.get_tweets(data.twitter, $html.find('.feed'));
+                }*/
+            }, 200);
         },
 
         render: function (data, $target) {
@@ -120,6 +127,26 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
             }
 
             return $html;
+        },
+
+        get_tweets: function (handle, $target) {
+
+            var t = this;
+
+            t.current_request = comm.request({
+                url: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
+                dataType: 'jsonp',
+                data: {
+                    user_id: handle,
+                    count: 1
+                },
+                done: function (data) {
+                    console.log(data);
+                },
+                always: function () {
+                    t.current_request = null;
+                }
+            });
         },
 
         add_events: function () {

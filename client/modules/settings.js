@@ -1,10 +1,9 @@
 define([], function () {
 
-    // Live server
-    //'http://theribots.nodejitsu.com/api/'
-    
+    var live_server = false;
+
     return {
-        riAPI_url: '//' + window.location.hostname + ':25708/api/',
+        riAPI_url: (live_server ? '//theribots.nodejitsu.com/api/' : '//'+window.location.hostname+':25708/api/'),
         overflow_scrolling: false
     };
 });

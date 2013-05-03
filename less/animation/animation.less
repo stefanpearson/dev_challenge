@@ -7,15 +7,22 @@
     # ANIMATION
 */
 
+.splash {
+    .transition-transform-properties(', opacity');
+    .transition-duration(0.5s);
+    .transition-timing-function(cubic-bezier(.10, .60, .10, 1));
+}
+
 .description__rule {
     .transition-transform-properties;
     .transition-duration(1s);
     .transition-timing-function(cubic-bezier(.2, 1, 0, 1));
+    //.transition-delay(0.2s);
 }
 
 .image {
     .transition-property(opacity);
-    .transition-duration(0.15s);
+    .transition-duration(0.3s);
     .transition-timing-function();
 }
 
@@ -31,6 +38,12 @@
 
 .section__header {
     .transition-transform-properties(', opacity');
+}
+
+.section__body {
+    .transition-property(opacity);
+    .transition-duration(0.2s);
+    .transition-timing-function();
 }
 
 .section__back,

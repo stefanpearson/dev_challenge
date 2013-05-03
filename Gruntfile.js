@@ -26,8 +26,8 @@ module.exports = function (grunt) {
             compile: {
                 options: {
                     //almond: true,
-                    //optimize: 'uglify2',
-                    optimize: 'none',
+                    optimize: 'uglify2',
+                    //optimize: 'none',
                     baseUrl: './client',
                     out: './public/js/build.js',
                     include: ['main', 'modules/handlebars_helpers'],

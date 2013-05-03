@@ -9,8 +9,8 @@ define(['modules/view_manager', 'modules/settings', 'libs/fastclick'], function 
         $('.bounds').addClass('bounds--overflow-scrolling');
     }
 
-    // Go to menu
-    view_manager.go_to_menu();
+    // Show splash
+    view_manager.show_splash();
 
     // w00t
     console.log('App initialised');

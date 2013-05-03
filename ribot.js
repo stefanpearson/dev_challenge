@@ -5,7 +5,7 @@ var express = require('express'),
 
 // Vars
 var app = express(),
-    port = 8080,
+    port = 8008,
     hbs = express_handlebars.create({
         layoutsDir: './views/',
         partialsDir: './views/',

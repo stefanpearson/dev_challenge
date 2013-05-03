@@ -1,4 +1,4 @@
-define(['modules/section', 'modules/menu'], function (Section, menu) {
+define(['modules/section', 'modules/menu', 'modules/splash'], function (Section, menu, splash) {
 
     /*
         View mediator
@@ -7,16 +7,22 @@ define(['modules/section', 'modules/menu'], function (Section, menu) {
 
     var active_view = null;
 
-    var go_to_section = function ($section, url) {
+    var show_splash = function () {
 
-        // To do: Check to see if already exists (from element id?) Only instantiate if necessary
-        var section = new Section($section, url);
-        update(section);
+        update(splash);
     };
 
     var go_to_menu = function () {
 
         update(menu);
+    };
+
+    var go_to_section = function ($section, url) {
+
+        // To do: Check to see if already exists (from element id?) Only instantiate if necessary
+        var section = new Section($section, url);
+
+        update(section);
     };
 
     var update = function (view) {
@@ -36,6 +42,8 @@ define(['modules/section', 'modules/menu'], function (Section, menu) {
     };
 
     return {
+        update: update,
+        show_splash: show_splash,
         go_to_menu: go_to_menu,
         go_to_section: go_to_section
     };
