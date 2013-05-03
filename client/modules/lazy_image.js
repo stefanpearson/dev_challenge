@@ -33,7 +33,7 @@ define(['zepto'], function () {
 
         error: function () {
 
-            this.$image.addClass('is-fallback is-ready');
+            this.$image.addClass('is-ready');
         }
 
     };

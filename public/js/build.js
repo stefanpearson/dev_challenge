@@ -1,69 +1,4 @@
 (function () {
-define('modules/section',[], function () {
-   
-    /*
-        Section module
-    */
-
-    // Constructor
-    var Section = function (url) {
-
-        this.url = url;
-    };
-    Section.prototype = {
-
-        init: function () {
-            
-        },
-
-        make_request: function () {
-
-        },
-
-        render: function () {
-
-        }
-
-    };
-
-    return Section; 
-});
-define('modules/request_store',[], function () {
-
-    /*
-        Current requests store
-    */
-
-    var counter = 0,
-        hash_table = {};
-
-    function make_key() {
-        ++counter;
-        return counter.toString();
-    }
-
-    var get = function (key) {
-        return hash_table[key.toString()];
-    };
-
-    var register = function (value) {
-        var key = make_key();
-        hash_table[key] = value;
-        return key;
-    };
-
-    var unregister = function (key) {
-        delete hash_table[key.toString()];
-    };
-
-    // Exports
-    return {
-        get: get,
-        register: register,
-        unregister: unregister
-    };
-});
-
 define('zepto',[], function () {
     
     var Zepto = (function() {
@@ -1598,6 +1533,84 @@ define('zepto',[], function () {
 
     return Zepto;
 });
+define('modules/lazy_image',['zepto'], function () {
+
+    /*
+        Lazy image
+        Instantiate with new operator; then call load, when required
+    */
+
+    // Constructor
+    var LazyImage = function ($image, src) {
+
+        this.$image = $image;
+        this.src = src;
+
+        return this;
+    };
+    LazyImage.prototype = {
+
+        load: function () {
+
+            var $dummy = $('<img />');
+
+            // Preload image, callback show or error
+            $dummy.one('load', $.proxy(this.show, this));
+            $dummy.one('error', $.proxy(this.error, this));
+            $dummy.attr('src', this.src);
+        },
+
+        show: function () {
+
+            this.$image.css({'background-image': 'url(' + this.src + ')'});
+            this.$image.addClass('is-ready');
+        },
+
+        error: function () {
+
+            this.$image.addClass('is-ready');
+        }
+
+    };
+
+    return LazyImage;
+});
+define('modules/request_store',[], function () {
+
+    /*
+        Current requests store
+    */
+
+    var counter = 0,
+        hash_table = {};
+
+    function make_key() {
+        ++counter;
+        return counter.toString();
+    }
+
+    var get = function (key) {
+        return hash_table[key.toString()];
+    };
+
+    var register = function (value) {
+        var key = make_key();
+        hash_table[key] = value;
+        return key;
+    };
+
+    var unregister = function (key) {
+        delete hash_table[key.toString()];
+    };
+
+    // Exports
+    return {
+        get: get,
+        register: register,
+        unregister: unregister
+    };
+});
+
 define('modules/ajax',['zepto'], function ($) {
 
     /*
@@ -2011,14 +2024,14 @@ function program9(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"media-object\">\n\n    <div class=\"media-object__media\">\n\n        <div class=\"ribotar\" ";
+  buffer += "<div class=\"media-object\">\n\n    <div class=\"media-object__media\">\n        \n        <div class=\"ribotar\" ";
   stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">\n\n            <div class=\"image\" data-src=\"";
+  buffer += ">\n            <div class=\"image\" data-src=\"";
   if (stack1 = helpers.ribotarURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.ribotarURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\"></div>\n\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
+    + "\"></div>\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
   options = {hash:{},data:data};
   stack2 = ((stack1 = helpers.idiom),stack1 ? stack1.call(depth0, "fav_sweet_label", options) : helperMissing.call(depth0, "idiom", "fav_sweet_label", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
@@ -2054,7 +2067,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n\n        <div class=\"section__back\"></div>\n\n        <header class=\"section__header\">\n            <h1 class=\"section__title\"><b>";
+    + "\">\n\n        <div class=\"section__back\"></div>\n\n        <header class=\"section__header\">\n            <h1 class=\"section__title\"><span><b>";
   if (stack1 = helpers.firstName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.firstName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -2062,7 +2075,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.lastName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.lastName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n            <h2 ";
+    + "</span></h1>\n            <h2 ";
   stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">";
@@ -2106,98 +2119,280 @@ function program6(depth0,data) {
 return this["Handlebars"]["templates"];
 
 });
-define('modules/menu',['modules/section', 'modules/comm', 'modules/templates'], function (Section, comm, templates) {
+define('modules/section',['modules/lazy_image', 'modules/comm', 'modules/templates', 'zepto', 'require'], function (LazyImage, comm, templates, $, require) {
+
+    /*
+        Section module
+    */
+
+    // Constructor
+    var Section = function ($section, url) {
+
+        var t = this;
+
+        t.$parent = $('.section-list');
+        t.$section = $section;
+        t.$back = $section.find('.section__title');
+        t.$body = $section.find('.section__body');
+        t.url = url;
+
+        t.current_request = null;
+    };
+    Section.prototype = {
+
+        $window: $(window),
+
+        activate: function () {
+
+            var t = this,
+                offset = -(t.$section.offset().top - 40),
+                defer;
+
+            t.make_request();
+
+            t.add_events();
+
+            t.$section.css({
+                '-webkit-transform': 'translate3d(0,' + offset + 'px, 0)'
+            });
+
+            t.$section.addClass('is-active');
+        },
+
+        deactivate: function () {
+
+            var t = this;
+
+            t.remove_events();
+
+            if (t.current_request !== null)
+            {
+                t.current_request.abort();
+            }
+
+            t.$body.empty();
+
+            t.$section.css({
+                '-webkit-transform': 'translate3d(0,0,0)'
+            });
+
+            t.$section.removeClass('is-active is-ready');
+        },
+
+        make_request: function () {
+
+            var t = this;
+
+            t.current_request = comm.request({
+                url: this.url,
+                done: function (data) {
+                    t.on_response(data);
+                },
+                always: function () {
+                    t.current_request = null;
+                }
+            });
+        },
+
+        on_response: function (data) {
+
+            var t = this,
+                $html = t.render(data, t.$body),
+                defer;
+
+            defer = setTimeout(function () {
+                t.$section.addClass('is-ready');
+                var $images = $html.find('.image');
+
+                $images.each(function (index, value) {
+                    var image = new LazyImage($(this), value.dataset.src);
+                    image.load();
+                });
+            }, 1);
+        },
+
+        render: function (data, $target) {
+
+            var $html;
+
+            // Augment data
+            data.ribotarURL = this.url + '/ribotar/';
+
+            // Render
+            $html = $(templates['member_profile'](data));
+
+            // Append to target
+            if ($target !== undefined && $target.length)
+            {
+                $target.append($html);
+            }
+
+            return $html;
+        },
+
+        add_events: function () {
+
+            var t = this;
+
+            t.$back.on('click', function () {
+                var view_manager = require('modules/view_manager');
+                view_manager.go_to_menu();
+            });
+        },
+
+        remove_events: function () {
+
+            var t = this;
+
+            t.$back.off('click');
+        }
+
+    };
+
+    return Section;
+});
+define('modules/menu',['modules/comm', 'modules/templates', 'zepto', 'require'], function (comm, templates, $, require) {
 
     /*
         Menu
     */
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
+    //var riAPI_url = 'http://theribots.nodejitsu.com/api/',
     var riAPI_url = '//' + window.location.hostname + ':25708/api/',
-        $menu = null;
+        $el = $('.bounds'),
+        $html = null,
+        current_request = null,
+        initialised = false;
 
-    var init = function () {
+    var activate = function () {
+        if (! initialised)
+        {
+            make_request();
+            initialised = true;
+        }
+        else
+        {
+            add_events();
+            $html.addClass('is-engaged');
+        }
+    };
+
+    var deactivate = function () {
+        if (current_request !== null)
+        {
+            current_request.abort();
+        }
+
+        if ($html !== null)
+        {
+            $html.removeClass('is-engaged');
+            remove_events();
+        }
+    };
+
+    var make_request = function () {
 
         // Make request
-        var team_request = comm.request({
+        current_request = comm.request({
             url: riAPI_url + 'team/',
-            done: function (data) {
-                var html = render(data);
-
-                $menu = $(html);
-                $('.bounds').append($menu);
-                add_events();
+            done: on_response,
+            always: function () {
+                current_request = null;
             }
         });
     };
 
-    var render = function (data) {
+    var on_response = function (data) {
 
-        return templates['team'](data);
+        $html = render(data, $el);
+
+        add_events();
+    };
+
+    var render = function (data, $target) {
+
+        var $html;
+
+        // Generate html from template
+        $html = $(templates['team'](data));
+
+        // Append to target
+        if ($target !== undefined && $target.length)
+        {
+            $target.empty().append($html);
+        }
+
+        return $html;
     };
 
     var add_events = function () {
 
-        $menu.on('click', '.section', tap_handler);
+        // Attach section tap handler
+        $html.on('click', '.section', item_tap_handler);
     };
 
     var remove_events = function () {
 
-        $menu.off('click', '.section', tap_handler);
+        // Remove section tap handler
+        $html.off('click', '.section', item_tap_handler);
     };
 
-    var tap_handler = function (e) {
+    var item_tap_handler = function (e) {
 
-        var el = e.currentTarget,
-            $el = $(el),
-            url = el.dataset.url;
+        var current_target = e.currentTarget,
+            $item = $(current_target),
+            view_manager = require('modules/view_manager');
 
-        console.log(url);
-
-        remove_events();
+        // Temp
+        view_manager.go_to_section($item, current_target.dataset.url);
     };
-
-    /*
-    $menu = $('.section-list');
-
-        $menu.on('click', '.section', function (e) {
-
-            var el = e.currentTarget,
-                $el = $(el),
-                url = el.dataset.url,
-                member_request;
-
-            $el.addClass('is-active');
-
-            member_request = comm.request({
-                url: url,
-                done: function (data) {
-                    var html,
-                        $images;
-
-                    data.ribotarURL = url + '/ribotar/';
-                    html = templates['member_profile'](data);
-
-                    $el.find('.section__body').append(html);
-
-                    setTimeout(function () {
-                        $el.addClass('is-ready');
-                        $images = $el.find('.image');
-
-                        $images.each(function (index, value) {
-                            var image = new LazyImage($(this), value.dataset.src);
-                            image.load();
-                        });
-                    }, 1);
-                    //$menu.off('click');
-                }
-            });
-        });
-    */
 
     // Exports
     return {
-        init: init
+        activate: activate,
+        deactivate: deactivate
+    };
+});
+define('modules/view_manager',['modules/section', 'modules/menu'], function (Section, menu) {
+
+    /*
+        View mediator
+        Manages views
+    */
+
+    var active_view = null;
+
+    var go_to_section = function ($section, url) {
+
+        // To do: Check to see if already exists (from element id?) Only instantiate if necessary
+        var section = new Section($section, url);
+        update(section);
+    };
+
+    var go_to_menu = function () {
+
+        update(menu);
+    };
+
+    var update = function (view) {
+
+        var defer;
+
+        if (active_view !== null)
+        {
+            active_view.deactivate();
+        }
+
+        defer = setTimeout(function () {
+            view.activate();
+        }, 0);
+
+        active_view = view;
+    };
+
+    return {
+        go_to_menu: go_to_menu,
+        go_to_section: go_to_section
     };
 });
 define('libs/fastclick',[], function () {
@@ -2898,15 +3093,15 @@ FastClick.attach = function(layer) {
 
 return FastClick;
 });
-define('main',['modules/menu', 'libs/fastclick'], function (menu, FastClick) {
+define('main',['modules/view_manager', 'libs/fastclick'], function (view_manager, FastClick) {
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/';
-
+    // Click event override to remove touch delay
     new FastClick(document.body);
 
-    menu.init();
+    // Go to menu
+    view_manager.go_to_menu();
 
+    // w00t
     console.log('App initialised');
 });
 
@@ -2945,6 +3140,7 @@ define('modules/idiom',['modules/document'], function (document) {
 
 define('modules/handlebars_helpers',['modules/idiom', 'handlebars'], function (idiom, Handlebars) {
 
+    // Compare values
     Handlebars.registerHelper('compare', function (lvalue, rvalue, options) {
 
         if (arguments.length < 3)
@@ -2981,6 +3177,7 @@ define('modules/handlebars_helpers',['modules/idiom', 'handlebars'], function (i
         return return_val;
     });
 
+    // Return idiom string
     Handlebars.registerHelper('idiom', function (key) {
 
         return idiom[key];

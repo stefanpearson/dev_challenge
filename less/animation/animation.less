@@ -19,6 +19,12 @@
     .transition-timing-function();
 }
 
+.section {
+    .transition-transform-properties();
+    .transition-duration(0.5s);
+    .transition-timing-function(cubic-bezier(.40, 0, .25, 1));
+}
+
 .section__back,
 .section__title {
     .transition-duration(0.5s);
@@ -31,4 +37,10 @@
 
 .section__title {
     .transition-transform-properties();
+
+    span {
+        .transition-transform-properties();
+        .transition-duration(100ms);
+        .transition-timing-function(ease-out);
+    }
 }

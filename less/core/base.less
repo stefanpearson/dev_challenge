@@ -28,7 +28,7 @@ body,
 
 .bounds {
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .section-list {
@@ -49,6 +49,15 @@ body,
     .padding(right, @h_gutter);
     .padding(left, @h_gutter);
     .padding(bottom, @v_gutter);
+    .accelerate;
+
+    .section__title {
+        cursor: pointer;
+
+        span {
+            display: inline-block;
+        }
+    }
 
     .section__body {
 
@@ -94,10 +103,24 @@ body,
             .scale('1, 1');
         }
     }
+
+    &:active {
+
+        .section__title {
+
+            span {
+                .scale('0.96, 0.96');
+            }
+        }
+    }
 }
 
 .ribotar {
     background-color: @color_default;
+
+    .image {
+        .background-image('anonymous.svg');
+    }
 }
 
 .description {

@@ -55,14 +55,14 @@ function program9(depth0,data) {
   return buffer;
   }
 
-  buffer += "<div class=\"media-object\">\n\n    <div class=\"media-object__media\">\n\n        <div class=\"ribotar\" ";
+  buffer += "<div class=\"media-object\">\n\n    <div class=\"media-object__media\">\n        \n        <div class=\"ribotar\" ";
   stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += ">\n\n            <div class=\"image\" data-src=\"";
+  buffer += ">\n            <div class=\"image\" data-src=\"";
   if (stack1 = helpers.ribotarURL) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.ribotarURL; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\"></div>\n\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
+    + "\"></div>\n        </div>\n\n    </div>\n\n    <div class=\"media-object__body\">\n\n        <dl class=\"data\">\n            <div class=\"data__item\">\n                <dt class=\"data__label\">";
   options = {hash:{},data:data};
   stack2 = ((stack1 = helpers.idiom),stack1 ? stack1.call(depth0, "fav_sweet_label", options) : helperMissing.call(depth0, "idiom", "fav_sweet_label", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
@@ -98,7 +98,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n\n        <div class=\"section__back\"></div>\n\n        <header class=\"section__header\">\n            <h1 class=\"section__title\"><b>";
+    + "\">\n\n        <div class=\"section__back\"></div>\n\n        <header class=\"section__header\">\n            <h1 class=\"section__title\"><span><b>";
   if (stack1 = helpers.firstName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.firstName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -106,7 +106,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.lastName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.lastName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n            <h2 ";
+    + "</span></h1>\n            <h2 ";
   stack1 = helpers['if'].call(depth0, depth0.hexColor, {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += ">";

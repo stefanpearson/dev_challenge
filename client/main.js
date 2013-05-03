@@ -1,11 +1,11 @@
-define(['modules/menu', 'libs/fastclick'], function (menu, FastClick) {
+define(['modules/view_manager', 'libs/fastclick'], function (view_manager, FastClick) {
 
-    //var riAPI_url = 'http://theribots.nodejitsu.com/api/';
-    var riAPI_url = '//' + window.location.hostname + ':25708/api/';
-
+    // Click event override to remove touch delay
     new FastClick(document.body);
 
-    menu.init();
+    // Go to menu
+    view_manager.go_to_menu();
 
+    // w00t
     console.log('App initialised');
 });

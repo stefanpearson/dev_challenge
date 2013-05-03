@@ -1,5 +1,6 @@
 define(['modules/idiom', 'handlebars'], function (idiom, Handlebars) {
 
+    // Compare values
     Handlebars.registerHelper('compare', function (lvalue, rvalue, options) {
 
         if (arguments.length < 3)
@@ -36,6 +37,7 @@ define(['modules/idiom', 'handlebars'], function (idiom, Handlebars) {
         return return_val;
     });
 
+    // Return idiom string
     Handlebars.registerHelper('idiom', function (key) {
 
         return idiom[key];

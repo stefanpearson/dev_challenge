@@ -29,3 +29,4 @@ app.get('/', routes['/']);
 
 // Start
 app.listen(port);
+console.log('Ribot app listening on port ' + port);
