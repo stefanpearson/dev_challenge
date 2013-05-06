@@ -15,7 +15,7 @@ Compile `/less/build.less` to `/public/css/` for the bundled stylesheet.
 
 #### To do
 
-* Remove ability to scroll entire viewport when section is focussed.
+* Section needs inner scrollpane for overflow content.
 * Twitter needs authentication with API 1.1.
 * Loader graphic (module is already complete).
 * Don't instantiate a new section every time it's activated.

@@ -1,4 +1,4 @@
-define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'modules/document', 'zepto', 'require'], function (LazyImage, comm, templates, settings, document, $, require) {
+define(['modules/viewport', 'modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'modules/document', 'zepto', 'require'], function (viewport, LazyImage, comm, templates, settings, document, $, require) {
 
     /*
         Section module
@@ -48,6 +48,8 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
             });
 
             t.$section.addClass('is-active');
+
+            viewport.disable_scroll();
         },
 
         deactivate: function () {
@@ -69,6 +71,8 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
 
             t.$parent.removeClass('is-engaged');
             t.$section.removeClass('is-active is-ready');
+
+            viewport.enable_scroll();
         },
 
         make_request: function () {
