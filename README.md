@@ -1,7 +1,7 @@
 # Ribot
 ## Dev Challenge
 
-Oh hi. [See the deployed version](http://ribot_challenge.eu01.aws.af.cm).
+Oh hi. [See the deployed version](http://ribot-challenge.herokuapp.com).
 
 Alternatively, to install, run `npm install` to grab the dependencies. Start the express server on port 8008 with `node app.js`.
 
