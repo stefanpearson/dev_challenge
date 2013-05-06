@@ -1,4 +1,4 @@
-define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'zepto', 'require'], function (LazyImage, comm, templates, settings, $, require) {
+define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/settings', 'modules/document', 'zepto', 'require'], function (LazyImage, comm, templates, settings, document, $, require) {
 
     /*
         Section module
@@ -134,8 +134,7 @@ define(['modules/lazy_image', 'modules/comm', 'modules/templates', 'modules/sett
             var t = this;
 
             t.current_request = comm.request({
-                url: 'https://api.twitter.com/1.1/statuses/user_timeline.json',
-                dataType: 'jsonp',
+                url: document.documentElement.dataset['base-url'] + 'twitter/',
                 data: {
                     user_id: handle,
                     count: 1
